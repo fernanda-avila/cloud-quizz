@@ -2,14 +2,6 @@
 
 Um quiz interativo com tema neon sobre computação em nuvem e gramática inglesa, desenvolvido com HTML, CSS e JavaScript.
 
-## 📋 Conteúdo
-- [Funcionalidades](#✨-funcionalidades)
-- [Tecnologias](#🛠-tecnologias-utilizadas)
-- [Como Usar](#🚀-como-usar)
-- [Estrutura do Projeto](#📁-estrutura-do-projeto)
-- [Personalização](#🎨-personalização)
-- [Licença](#📜-licença)
-
 ## ✨ Funcionalidades
 ✅ **Explicação inicial** sobre computação em nuvem  
 ✅ **Seção gramatical** (Simple Present, Present Continuous, Imperativo)  
