@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing Quizz</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        :root {
+            --neon-blue: #08f;
+            --neon-pink: #f0f;
+            --neon-green: #0f8;
+            --neon-purple: #80f;
+            --dark-bg: #111;
+            --light-text: #eee;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1, h2 {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            animation: pulsePink 2s infinite alternate;
+        }
+        
+        h3 {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        @keyframes pulse {
+            from {
+                text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            }
+            to {
+                text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-blue);
+            }
+        }
+        
+        @keyframes pulsePink {
+            from {
+                text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            }
+            to {
+                text-shadow: 0 0 15px var(--neon-pink), 0 0 30px var(--neon-pink), 0 0 40px var(--neon-pink);
+            }
+        }
+        
+        .content-box {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--neon-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 0 20px var(--neon-purple);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-green));
+            z-index: -1;
+            border-radius: 10px;
+            animation: borderAnimation 4s linear infinite;
+            background-size: 200% 200%;
+        }
+        
+        @keyframes borderAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .question {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .option {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option:hover {
+            background-color: rgba(0, 136, 255, 0.2);
+            box-shadow: 0 0 10px var(--neon-blue);
+            transform: translateY(-3px);
+        }
+        
+        .option.correct {
+            background-color: rgba(0, 255, 0, 0.2);
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+        
+        .option.incorrect {
+            background-color: rgba(255, 0, 0, 0.2);
+            border-color: #f00;
+            box-shadow: 0 0 15px #f00;
+        }
+        
+        .btn {
+            background-color: var(--neon-pink);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+            box-shadow: 0 0 10px var(--neon-pink);
+        }
+        
+        .btn:hover {
+            background-color: var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: translateY(-3px);
+        }
+        
+        .btn-blue {
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+        
+        .btn-blue:hover {
+            background-color: var(--neon-green);
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+        
+        .score-container {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .result-container, .explanation-container {
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .final-score {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: var(--neon-blue);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: float 10s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        .timer {
+            color: var(--neon-pink);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+        
+        .info-section {
+            margin-bottom: 2rem;
+        }
+        
+        .info-title {
+            color: var(--neon-green);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+        
+        .info-text {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .benefits-list, .drawbacks-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .benefits-list li::before {
+            content: "✓ ";
+            color: var(--neon-green);
+        }
+        
+        .drawbacks-list li::before {
+            content: "✗ ";
+            color: #f00;
+        }
+        
+        .verb-example {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-left: 3px solid var(--neon-blue);
+            margin: 1rem 0;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+        
+        .grammar-section {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--neon-purple);
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.2rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+            }
+            
+            .option {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .info-title {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <h1>QUIZ NEON: COMPUTAÇÃO EM NUVEM</h1>
+        
+      
+        <div class="explanation-container content-box" id="explanation">
+            <h2>O que é Computação em Nuvem?</h2>
+            
+            <div class="info-section">
+                <p class="info-text">A computação em nuvem é a entrega de recursos de computação sob demanda (como hardware, armazenamento e software) através da internet, permitindo que empresas e indivíduos acessem e armazenem informações sem precisar gerenciar infraestrutura física.</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">Benefícios da Computação em Nuvem:</div>
+                <ul class="benefits-list">
+                    <li>Rapidez no tempo de lançamento</li>
+                    <li>Escalabilidade e flexibilidade</li>
+                    <li>Economias de custo</li>
+                    <li>Melhor colaboração</li>
+                    <li>Segurança avançada</li>
+                    <li>Prevenção da perda de dados</li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">Desvantagens da Computação em Nuvem:</div>
+                <ul class="drawbacks-list">
+                    <li>Risco de dependência de fornecedor</li>
+                    <li>Menos controle sobre a infraestrutura</li>
+                    <li>Preocupações com segurança e privacidade</li>
+                    <li>Complexidade na integração com sistemas existentes</li>
+                    <li>Custos imprevistos</li>
+                </ul>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">Por que mudar para a nuvem?</div>
+                <p class="info-text">A nuvem oferece flexibilidade, confiabilidade, melhor desempenho e redução de custos de TI. Além disso, facilita a inovação e a adoção de tecnologias como IA e machine learning, aumentando a produtividade e a eficiência operacional.</p>
+            </div>
+            
+            <div class="grammar-section">
+                <div class="info-title">Explicação Gramatical</div>
+                
+                <h3>Simple Present (Presente Simples)</h3>
+                <p class="info-text">Usado para expressar ações habituais, verdades universais e fatos permanentes.</p>
+                
+                <div class="verb-example">
+                    <strong>Forma afirmativa:</strong><br>
+                    "Cloud computing <em>is</em> the delivery of on-demand computing resources."<br>
+                    "The cloud <em>offers</em> flexibility and reliability."
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Forma negativa:</strong><br>
+                    "Cloud computing <em>is not</em> the delivery..." (verbo to be)<br>
+                    "The cloud <em>does not offer</em> flexibility..." (outros verbos)
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Forma interrogativa:</strong><br>
+                    "<em>Is</em> cloud computing the delivery...?" (verbo to be)<br>
+                    "<em>Does</em> the cloud <em>offer</em> flexibility...?" (outros verbos)
+                </div>
+                
+                <h3>Present Continuous (Presente Contínuo)</h3>
+                <p class="info-text">Usado para expressar ações que estão acontecendo agora ou em um período temporário.</p>
+                
+                <div class="verb-example">
+                    <strong>Estrutura:</strong> sujeito + <em>to be</em> + verbo com -ing<br>
+                    "Companies <em>are migrating</em> to the cloud to reduce costs."<br>
+                    "Many businesses <em>are adopting</em> cloud solutions now."
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Forma negativa:</strong><br>
+                    "Companies <em>are not migrating</em> to the cloud..."
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Forma interrogativa:</strong><br>
+                    "<em>Are</em> companies <em>migrating</em> to the cloud?"
+                </div>
+                
+                <h3>Imperativo</h3>
+                <p class="info-text">Usado para dar ordens, instruções ou conselhos. Não possui sujeito explícito.</p>
+                
+                <div class="verb-example">
+                    <strong>Forma afirmativa:</strong><br>
+                    "<em>Research</em> cloud providers before choosing one."<br>
+                    "<em>Choose</em> a platform that allows flexibility."
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Forma negativa:</strong> don't + verbo base<br>
+                    "<em>Don't research</em> cloud providers without comparing options."<br>
+                    "<em>Don't choose</em> a platform without understanding the costs."
+                </div>
+                
+                <div class="verb-example">
+                    <strong>Dica:</strong> O imperativo usa sempre a forma base do verbo (infinitivo sem "to"). Para a forma negativa, usamos "don't" antes do verbo.
+                </div>
+            </div>
+            
+            <button class="btn btn-blue" id="start-btn">Começar Quiz</button>
+        </div>
+        
+        
+        <div class="content-box" id="quiz">
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            
+            <div class="timer" id="timer">Tempo: 30s</div>
+            
+            <div class="question" id="question"></div>
+            
+            <div class="options" id="options"></div>
+            
+            <button class="btn" id="next-btn">Próxima</button>
+            
+            <div class="score-container" id="score">Pontuação: 0</div>
+        </div>
+        
+       
+        <div class="result-container content-box" id="result">
+            <h2>Quiz Concluído!</h2>
+            <div class="final-score" id="final-score"></div>
+            <button class="btn btn-blue" id="restart-btn">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const explanationContainer = document.getElementById('explanation');
+            const quizContainer = document.getElementById('quiz');
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const nextButton = document.getElementById('next-btn');
+            const scoreElement = document.getElementById('score');
+            const progressBar = document.getElementById('progress-bar');
+            const resultContainer = document.getElementById('result');
+            const finalScoreElement = document.getElementById('final-score');
+            const restartButton = document.getElementById('restart-btn');
+            const timerElement = document.getElementById('timer');
+            const startButton = document.getElementById('start-btn');
+            
+          
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let timer;
+            let timeLeft = 30;
+            
+          
+            const questions = [
+                {
+                    question: "O que é computação em nuvem?",
+                    options: [
+                        "Um tipo de hardware físico para armazenamento local",
+                        "A entrega de recursos de computação sob demanda através da internet",
+                        "Um sistema operacional específico para servidores",
+                        "Uma rede privada para empresas"
+                    ],
+                    correctAnswer: 1,
+                    explanation: "Correto! Computação em nuvem é a entrega de recursos de computação sob demanda (como hardware, armazenamento e software) através da internet."
+                },
+                {
+                    question: "Qual NÃO é um benefício da computação em nuvem?",
+                    options: [
+                        "Escalabilidade e flexibilidade",
+                        "Economia de custos",
+                        "Necessidade de gerenciar infraestrutura física",
+                        "Melhor colaboração"
+                    ],
+                    correctAnswer: 2,
+                    explanation: "Correto! Um dos principais benefícios é NÃO precisar gerenciar infraestrutura física."
+                },
+                {
+                    question: "Qual é uma desvantagem potencial da computação em nuvem?",
+                    options: [
+                        "Risco de dependência de fornecedor",
+                        "Maior controle sobre a infraestrutura",
+                        "Custos mais baixos sempre",
+                        "Nenhuma preocupação com segurança"
+                    ],
+                    correctAnswer: 0,
+                    explanation: "Correto! A dependência de fornecedores é uma desvantagem conhecida da computação em nuvem."
+                },
+                {
+                    question: "Qual verbo está na frase: 'Cloud computing is the delivery of on-demand computing resources.'?",
+                    options: [
+                        "computing",
+                        "delivery",
+                        "is",
+                        "resources"
+                    ],
+                    correctAnswer: 2,
+                    explanation: "Correto! O verbo é 'is' (to be) no Simple Present."
+                },
+                {
+                    question: "Qual é a forma negativa correta de: 'The cloud offers flexibility and reliability.'?",
+                    options: [
+                        "The cloud not offers flexibility and reliability.",
+                        "The cloud doesn't offers flexibility and reliability.",
+                        "The cloud does not offer flexibility and reliability.",
+                        "The cloud don't offer flexibility and reliability."
+                    ],
+                    correctAnswer: 2,
+                    explanation: "Correto! A forma negativa no Simple Present para 'it' usa 'does not' + verbo no infinitivo."
+                },
+                {
+                    question: "Complete com Present Continuous: 'Companies _____ (migrate) to the cloud to reduce costs.'",
+                    options: [
+                        "migrates",
+                        "are migrating",
+                        "is migrating",
+                        "migrating"
+                    ],
+                    correctAnswer: 1,
+                    explanation: "Correto! O Present Continuous para 'Companies' é 'are migrating'."
+                },
+                {
+                    question: "Qual é a forma interrogativa correta de: 'The cloud facilitates innovation.'?",
+                    options: [
+                        "Does the cloud facilitates innovation?",
+                        "Do the cloud facilitate innovation?",
+                        "Does the cloud facilitate innovation?",
+                        "Is the cloud facilitate innovation?"
+                    ],
+                    correctAnswer: 2,
+                    explanation: "Correto! A forma interrogativa no Simple Present para 'it' usa 'Does' + sujeito + verbo no infinitivo."
+                },
+                {
+                    question: "Qual frase está no imperativo negativo correto?",
+                    options: [
+                        "Not research cloud providers before choosing one.",
+                        "Don't research cloud providers before choosing one.",
+                        "Doesn't research cloud providers before choosing one.",
+                        "No research cloud providers before choosing one."
+                    ],
+                    correctAnswer: 1,
+                    explanation: "Correto! O imperativo negativo usa 'Don't' + verbo no infinitivo."
+                },
+                {
+                    question: "Complete com 'to be': 'Cloud computing _____ a practical solution.'",
+                    options: [
+                        "are",
+                        "is",
+                        "am",
+                        "be"
+                    ],
+                    correctAnswer: 1,
+                    explanation: "Correto! 'Cloud computing' é singular, então usamos 'is'."
+                },
+                {
+                    question: "Por que as empresas estão mudando para a nuvem?",
+                    options: [
+                        "Porque é mais lento e menos confiável",
+                        "Porque oferece flexibilidade, confiabilidade e redução de custos",
+                        "Porque requer mais infraestrutura física",
+                        "Porque não suporta tecnologias como IA"
+                    ],
+                    correctAnswer: 1,
+                    explanation: "Correto! As empresas migram para a nuvem por seus benefícios como flexibilidade, confiabilidade e redução de custos."
+                }
+            ];
+            
+           
+            function initQuiz() {
+                explanationContainer.style.display = 'block';
+                quizContainer.style.display = 'none';
+                resultContainer.style.display = 'none';
+                createParticles();
+            }
+            
+            function startQuiz() {
+                currentQuestionIndex = 0;
+                score = 0;
+                scoreElement.textContent = `Pontuação: ${score}`;
+                explanationContainer.style.display = 'none';
+                quizContainer.style.display = 'block';
+                resultContainer.style.display = 'none';
+                showQuestion();
+                startTimer();
+            }
+            
+         
+            function showQuestion() {
+                resetState();
+                const currentQuestion = questions[currentQuestionIndex];
+                const questionNo = currentQuestionIndex + 1;
+                const totalQuestions = questions.length;
+                
+                
+                const progressPercent = (questionNo / totalQuestions) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                
+                questionElement.textContent = `${questionNo}. ${currentQuestion.question}`;
+                
+             
+                currentQuestion.options.forEach((option, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.classList.add('option');
+                    optionElement.textContent = option;
+                    optionElement.addEventListener('click', () => selectOption(index));
+                    optionsElement.appendChild(optionElement);
+                });
+                
+              
+                resetTimer();
+            }
+            
+           
+            function resetState() {
+                nextButton.style.display = 'none';
+                while (optionsElement.firstChild) {
+                    optionsElement.removeChild(optionsElement.firstChild);
+                }
+            }
+            
+           
+            function selectOption(selectedIndex) {
+                const currentQuestion = questions[currentQuestionIndex];
+                const options = document.querySelectorAll('.option');
+                const correctIndex = currentQuestion.correctAnswer;
+                
+                
+                clearInterval(timer);
+                
+               
+                options.forEach((option, index) => {
+                    if (index === correctIndex) {
+                        option.classList.add('correct');
+                    } else if (index === selectedIndex && index !== correctIndex) {
+                        option.classList.add('incorrect');
+                    }
+                    option.style.pointerEvents = 'none';
+                });
+                
+             
+                if (selectedIndex === correctIndex) {
+                    score++;
+                    scoreElement.textContent = `Pontuação: ${score}`;
+                }
+                
+              
+                if (currentQuestion.explanation) {
+                    const correctOption = options[correctIndex];
+                    correctOption.setAttribute('title', currentQuestion.explanation);
+                    correctOption.style.cursor = 'help';
+                }
+                
+                nextButton.style.display = 'block';
+            }
+            
+            
+            function showNextQuestion() {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }
+            
+          
+            function showResult() {
+                quizContainer.style.display = 'none';
+                resultContainer.style.display = 'block';
+                finalScoreElement.textContent = `Sua pontuação final: ${score} de ${questions.length}`;
+            }
+            
+           
+            function createParticles() {
+                const particlesContainer = document.getElementById('particles');
+                particlesContainer.innerHTML = '';
+                
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                  
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100 + 100; // Começar abaixo da tela
+                    
+                  
+                    const size = Math.random() * 3 + 1;
+                    
+                  
+                    const colors = ['var(--neon-blue)', 'var(--neon-pink)', 'var(--neon-green)', 'var(--neon-purple)'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                   
+                    const delay = Math.random() * 10;
+                    
+                   
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.backgroundColor = randomColor;
+                    particle.style.animationDelay = `${delay}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+           
+            function startTimer() {
+                resetTimer();
+                updateTimerDisplay();
+                timer = setInterval(() => {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        timeUp();
+                    }
+                }, 1000);
+            }
+            
+            function resetTimer() {
+                clearInterval(timer);
+                timeLeft = 30;
+                updateTimerDisplay();
+            }
+            
+            function updateTimerDisplay() {
+                timerElement.textContent = `Tempo: ${timeLeft}s`;
+                
+                if (timeLeft <= 10) {
+                    timerElement.style.color = 'red';
+                    timerElement.style.textShadow = '0 0 5px red';
+                } else if (timeLeft <= 20) {
+                    timerElement.style.color = 'var(--neon-pink)';
+                    timerElement.style.textShadow = '0 0 5px var(--neon-pink)';
+                } else {
+                    timerElement.style.color = 'var(--neon-pink)';
+                    timerElement.style.textShadow = '0 0 5px var(--neon-pink)';
+                }
+            }
+            
+            function timeUp() {
+                const options = document.querySelectorAll('.option');
+                options.forEach(option => {
+                    option.style.pointerEvents = 'none';
+                });
+                
+                const currentQuestion = questions[currentQuestionIndex];
+                const correctIndex = currentQuestion.correctAnswer;
+                
+               
+                options.forEach((option, index) => {
+                    if (index === correctIndex) {
+                        option.classList.add('correct');
+                        if (currentQuestion.explanation) {
+                            option.setAttribute('title', currentQuestion.explanation);
+                            option.style.cursor = 'help';
+                        }
+                    }
+                });
+                
+                nextButton.style.display = 'block';
+            }
+            
+          
+            nextButton.addEventListener('click', showNextQuestion);
+            restartButton.addEventListener('click', startQuiz);
+            startButton.addEventListener('click', startQuiz);
+            
+            
+            initQuiz();
+        });
+    </script>
+</body>
+</html>
