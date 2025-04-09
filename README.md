@@ -1,4 +1,4 @@
-# Quiz Neon: Computação em Nuvem
+# Cloud Computing Quiz
 
 Um quiz interativo sobre computação em nuvem e gramática inglesa, desenvolvido com HTML, CSS e JavaScript.
 
