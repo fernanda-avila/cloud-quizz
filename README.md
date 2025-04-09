@@ -30,3 +30,7 @@ Um quiz interativo sobre computação em nuvem e gramática inglesa, desenvolvid
   width="200" 
   height="200" 
 />
+
+## 🔗 Link para acessar Desktop:
+
+### https://cloud-quizzzz.vercel.app/
