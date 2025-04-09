@@ -649,30 +649,41 @@
             }
             
          
-            function showQuestion() {
-                resetState();
-                const currentQuestion = questions[currentQuestionIndex];
-                const questionNo = currentQuestionIndex + 1;
-                const totalQuestions = questions.length;
-                
-                
-                const progressPercent = (questionNo / totalQuestions) * 100;
-                progressBar.style.width = `${progressPercent}%`;
-                
-                questionElement.textContent = `${questionNo}. ${currentQuestion.question}`;
-                
-             
-                currentQuestion.options.forEach((option, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.classList.add('option');
-                    optionElement.textContent = option;
-                    optionElement.addEventListener('click', () => selectOption(index));
-                    optionsElement.appendChild(optionElement);
-                });
-                
-              
-                resetTimer();
-            }
+
+function showQuestion() {
+    resetState();
+    const currentQuestion = questions[currentQuestionIndex];
+    const questionNo = currentQuestionIndex + 1;
+    const totalQuestions = questions.length;
+    
+    
+    const progressPercent = (questionNo / totalQuestions) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+    
+    questionElement.textContent = `${questionNo}. ${currentQuestion.question}`;
+    
+    
+    currentQuestion.options.forEach((option, index) => {
+        const optionElement = document.createElement('div');
+        optionElement.classList.add('option');
+        optionElement.textContent = option;
+        optionElement.addEventListener('click', () => selectOption(index));
+        optionsElement.appendChild(optionElement);
+    });
+    
+   
+    clearInterval(timer); 
+    timeLeft = 30; 
+    updateTimerDisplay(); 
+    startTimer(); 
+}
+
+
+function resetTimer() {
+    clearInterval(timer); 
+    timeLeft = 30;
+    updateTimerDisplay();
+}
             
            
             function resetState() {
