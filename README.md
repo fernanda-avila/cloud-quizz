@@ -24,5 +24,5 @@ Um quiz interativo sobre computação em nuvem e gramática inglesa, desenvolvid
  
 ## 🕹️ QRCode para testar o jogo versão mobile:
   
-  ![qrcode_cloud-quizzzz vercel app](https://github.com/user-attachments/assets/2e963a84-00a9-4a3d-b408-0aa5d2ba7c02){ width=200 }
+  ![qrcode_cloud-quizzzz vercel app](https://github.com/user-attachments/assets/2e963a84-00a9-4a3d-b408-0aa5d2ba7c02){width=200}
 
