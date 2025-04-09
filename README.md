@@ -1,6 +1,6 @@
-# Quiz Neon: Computação em Nuvem
+# Cloud Computing Quiz
 
-Um quiz interativo com tema neon sobre computação em nuvem e gramática inglesa, desenvolvido com HTML, CSS e JavaScript.
+#### Um quiz interativo sobre computação em nuvem e gramática inglesa, desenvolvido com HTML, CSS e JavaScript.
 
 ## ✨ Funcionalidades
 ✅ **Explicação inicial** sobre computação em nuvem  
@@ -21,4 +21,16 @@ Um quiz interativo com tema neon sobre computação em nuvem e gramática ingles
   - Lógica do quiz
   - Gerenciamento de estado
   - Temporizador
+ 
+## 🕹️ QRCode para testar o jogo versão mobile:
   
+<img 
+  src="https://github.com/user-attachments/assets/2e963a84-00a9-4a3d-b408-0aa5d2ba7c02" 
+  alt="qrcode_cloud-quizzzz vercel app" 
+  width="200" 
+  height="200" 
+/>
+
+## 🔗 Link para acessar Desktop:
+
+### https://cloud-quizzzz.vercel.app/
